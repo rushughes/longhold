@@ -5,6 +5,7 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 require('./models/User');
+require('./models/ICO');
 require('./services/passport');
 
 mongoose.connect(keys.mongoURI);
@@ -29,6 +30,7 @@ app.use(function(req, res, next) {
 });
 
 require('./routes/authRoutes')(app);
+require('./routes/ICORoutes')(app);
 
 if (process.env.NODE_ENV == 'production') {
   // express will serve up static production assets

@@ -6,6 +6,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
+import ICONew from './icos/ICONew';
 
 class App extends Component {
   componentDidMount() {
@@ -20,6 +21,7 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/icos" component={Dashboard} />
+            <Route exact path="/icos/new" component={ICONew} />
           </div>
         </BrowserRouter>
       </div>
