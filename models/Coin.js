@@ -22,6 +22,9 @@ const coinSchema = new Schema({
   tokenReturn: String,
   country: String,
   industry: String,
+},
+{
+  timestamps: true,
 });
 
 mongoose.model('coins', coinSchema);

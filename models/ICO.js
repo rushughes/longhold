@@ -7,6 +7,9 @@ const ICOSchema = new Schema({
   investment: String,
   transactionID: String,
   _user: { type: Schema.Types.ObjectId, ref: 'User' },
+},
+{
+  timestamps: true,
 });
 
 mongoose.model('icos', ICOSchema);
