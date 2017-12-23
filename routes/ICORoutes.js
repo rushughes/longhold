@@ -12,6 +12,11 @@ module.exports = app => {
     res.send(icos);
   });
 
+  app.get('/api/icos/:icoId', requireLogin, async (req, res) => {
+    const ico = await ICO.find({ _user: req.user.id, _id: req.params.icoId }).select();
+    res.send(ico);
+  });
+
   app.post('/api/icos', requireLogin, async (req, res) => {
     const { project, symbol, investment, transactionID } = req.body;
 
