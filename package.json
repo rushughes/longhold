@@ -28,5 +28,10 @@
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
     "path-parser": "^3.0.1"
+  },
+  "devDependencies": {
+    "csv-parse": "^2.0.0",
+    "fs": "0.0.1-security",
+    "parse": "^1.11.0"
   }
 }

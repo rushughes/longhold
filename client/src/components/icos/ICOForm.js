@@ -25,6 +25,7 @@ class ICOForm extends Component {
   render() {
     return (
       <div>
+        {this.props.ico}
         <form onSubmit={this.props.handleSubmit(this.props.onICOSubmit)}>
           {this.renderFields()}
           <Link to="/icos" className="red btn-flat left white-text">

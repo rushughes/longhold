@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchICOs } from '../../actions';
+import { Link } from 'react-router-dom';
 
 class ICOList extends Component {
   componentDidMount() {
@@ -13,7 +14,9 @@ class ICOList extends Component {
       return (
         <div className="card darken-1" key={ico._id}>
           <div className="card-content">
-            <span className="card-title">{ico.project}</span>
+            <Link to={`/icos/edit/${ico._id}`}>
+              <span className="card-title">{ico.project}</span>
+            </Link>
             <p>{ico.symbol}</p>
             <p className="right">
               Investment {ico.investment}
