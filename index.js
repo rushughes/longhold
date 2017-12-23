@@ -1,3 +1,5 @@
+const logger = require('./config/logger');
+const morgan = require('morgan');
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
@@ -12,6 +14,9 @@ mongoose.connect(keys.mongoURI);
 
 const app = express();
 
+logger.debug('Overriding Express logger');
+app.use(morgan('combined', { stream: logger.stream }));
+
 app.use(bodyParser.json());
 
 app.use(
@@ -23,11 +28,6 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(function(req, res, next) {
-  console.log(Date.now(), req.originalUrl);
-  next();
-});
 
 require('./routes/authRoutes')(app);
 require('./routes/ICORoutes')(app);
@@ -46,4 +46,6 @@ if (process.env.NODE_ENV == 'production') {
 }
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT);
+app.listen(PORT, function () {
+  logger.info('Listening on port:', PORT);
+});
