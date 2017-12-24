@@ -1,3 +1,4 @@
+const logger = require('../config/logger');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
@@ -24,7 +25,8 @@ passport.use(
       proxy: true,
     },
     async (accessToken, refreshToken, profile, done) => {
-      console.log(profile);
+      logger.debug(profile);
+
       const existingUser = await User.findOneAndUpdate({
         googleId: profile.id,
       }, {
@@ -33,6 +35,7 @@ passport.use(
         email: profile.emails[0].value,
         photo: profile.photos[0].value,
       });
+
       if (existingUser) {
         return done(null, existingUser);
       } else {
@@ -43,8 +46,9 @@ passport.use(
           email: profile.emails[0].value,
           photo: profile.photos[0].value,
         }).save();
-        done(null, user);
       }
+
+      done(null, user);
     }
   )
 );

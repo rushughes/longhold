@@ -9,7 +9,7 @@ class ICOList extends Component {
   }
 
   renderICOs() {
-    console.log(this.props);
+    console.log('ass', this.props.icos);
     return this.props.icos.reverse().map(ico => {
       return (
         <div className="card darken-1" key={ico._id}>

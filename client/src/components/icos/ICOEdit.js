@@ -1,12 +1,11 @@
 // ICONew shows ICOForm and ICOFormReview
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
-import ICOForm from './ICOForm';
+//import { reduxForm } from 'redux-form';
+import ICOUpdateForm from './ICOUpdateForm';
 import { fetchICO } from '../../actions';
 
 class ICOEdit extends Component {
-  state = { showFormReview: false };
 
   componentDidMount() {
     const { match: { params } } = this.props;
@@ -15,9 +14,8 @@ class ICOEdit extends Component {
 
   renderContent() {
     return (
-      <ICOForm
-        ico={this.props.ico}
-        onICOSubmit={() => this.setState({ showFormReview: true })}
+      <ICOUpdateForm
+        icos={this.props.icos}
       />
     );
   }
@@ -27,8 +25,8 @@ class ICOEdit extends Component {
   }
 }
 
-function mapStateToProps({ ico }) {
-  return { ico };
+function mapStateToProps({ icos }) {
+  return { icos };
 }
 
 export default connect(mapStateToProps, { fetchICO })(ICOEdit);

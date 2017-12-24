@@ -6,7 +6,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
-import ICONew from './icos/ICONew';
+import ICOCreate from './icos/ICOCreate';
 import ICOEdit from './icos/ICOEdit';
 
 class App extends Component {
@@ -22,7 +22,7 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/icos" component={Dashboard} />
-            <Route exact path="/icos/new" component={ICONew} />
+            <Route exact path="/icos/create" component={ICOCreate} />
             <Route exact path="/icos/edit/:icoId" component={ICOEdit} />
           </div>
         </BrowserRouter>

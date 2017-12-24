@@ -1,3 +1,4 @@
+const logger = require('../config/logger');
 const _ = require('lodash');
 const Path = require('path-parser');
 const { URL } = require('url');
@@ -18,6 +19,7 @@ module.exports = app => {
   });
 
   app.post('/api/icos', requireLogin, async (req, res) => {
+    logger.debug(req.body);
     const { project, symbol, investment, transactionID } = req.body;
 
     const ico = new ICO({
@@ -34,5 +36,25 @@ module.exports = app => {
     } catch (err) {
       res.status(422).send(err);
     }
+  });
+
+  app.put('/api/icos', requireLogin, async (req, res) => {
+    logger.debug(req.body);
+    const { _id, project, symbol, investment, transactionID } = req.body;
+    const doc = {
+      _id,
+      project,
+      symbol,
+      investment,
+      transactionID,
+      _user: req.user.id,
+    };
+
+    logger.debug('Updating record', doc);
+    const ico = await ICO.findOneAndUpdate({ _user: req.user.id, _id: _id }, doc);
+
+    const icos = await ICO.find({ _user: req.user.id }).select();
+    logger.debug('Returning records', icos);
+    res.send(icos);
   });
 };

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import { reducer as reduxForm } from 'redux-form';
+import { reducer as formReducer } from 'redux-form';
 import authReducer from './authReducer';
 import ICOsReducer from './ICOsReducer';
 
 export default combineReducers({
   auth: authReducer,
-  form: reduxForm,
+  form: formReducer,
   icos: ICOsReducer,
 });

@@ -1,14 +1,13 @@
-// SurveyForm shows a form for a user to add input
-
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import ICOField from './ICOField';
 import formFields from './formFields';
+import { updateICO } from '../../actions';
 
-class ICOForm extends Component {
+class ICOUpdateForm extends Component {
   renderFields() {
     return _.map(formFields, ({ label, name }) => {
       return (
@@ -23,36 +22,27 @@ class ICOForm extends Component {
     });
   }
 
+  onSubmit = (values) => {
+    console.log('values', values);
+    this.props.updateICO(values, this.props.history);
+  };
+
   render() {
     return (
       <div>
-        <form onSubmit={this.props.handleSubmit(this.props.onICOSubmit)}>
+        <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
           {this.renderFields()}
           <Link to="/icos" className="red btn-flat left white-text">
             Cancel
           </Link>
           <button type="submit" className="teal btn-flat right white-text">
-            Save
-            <i className="material-icons right">done</i>
+            Update<i className="material-icons right">done</i>
           </button>
         </form>
       </div>
     );
   }
 }
-/*
-function componentWillMount() {
-  if (this.props.pristine) {
-    this.props.initializeForm(this.props.icos);
-  }
-}
-
-function componentWillUnmount() {
-  if (this.props.pristine) {
-    this.props.destroyForm();
-  }
-}
-*/
 
 function mapStateToProps(state) {
   console.log('state:', state);
@@ -73,9 +63,9 @@ function validate(values) {
   return errors;
 }
 
-export default connect(mapStateToProps)(reduxForm({
+export default connect(mapStateToProps, { updateICO })(reduxForm({
   validate,
-  form: 'icoForm',
+  form: 'icoUpdateForm',
   destroyOnUnmount: false,
   enableReinitialize: true,
-})(ICOForm));
+})(withRouter(ICOUpdateForm)));

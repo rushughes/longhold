@@ -7,7 +7,7 @@ const Dashboard = () => {
     <div>
       <ICOList />
       <div className="fixed-action-btn">
-        <Link to="/icos/new" className="btn-floating btn-large red">
+        <Link to="/icos/create" className="btn-floating btn-large red">
           <i className="material-icons">add</i>
         </Link>
       </div>
