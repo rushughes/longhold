@@ -32,7 +32,7 @@
     "winston": "^2.4.0"
   },
   "devDependencies": {
-    "csv-parse": "^2.0.0",
+    "csv-parse": "^4.4.6",
     "fs": "0.0.1-security",
     "parse": "^1.11.0"
   }
