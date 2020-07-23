@@ -34,6 +34,6 @@
   "devDependencies": {
     "csv-parse": "^2.0.0",
     "fs": "0.0.1-security",
-    "parse": "^1.11.0"
+    "parse": "^2.10.0"
   }
 }
